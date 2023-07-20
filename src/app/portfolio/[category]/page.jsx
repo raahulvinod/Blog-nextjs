@@ -21,7 +21,7 @@ const Category = ({ params }) => {
       <h1 className={styles.catTitle}>{params.category}</h1>
 
       {data.map((item) => (
-        <div className={styles.item}>
+        <div className={styles.item} key={item.id}>
           <div className={styles.content}>
             <h1 className={styles.title}>{item.title}</h1>
             <p className={styles.desc}>{item.desc}</p>
