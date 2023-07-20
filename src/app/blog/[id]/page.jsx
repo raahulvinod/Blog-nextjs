@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 async function getData(id) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+  const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
     next: { revalidate: 10 },
   });
 
@@ -22,12 +22,7 @@ const BlogPost = async ({ params }) => {
       <div className={styles.top}>
         <div className={styles.info}>
           <h1 className={styles.title}>{data.title}</h1>
-          <p className={styles.desc}>
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority have suffered alteration in some form, by injected
-            humour, or randomised words which don't look even slightly
-            believable.
-          </p>
+          <p className={styles.desc}>{data.desc}</p>
           <div className={styles.author}>
             <Image
               src="https://images.pexels.com/photos/4449317/pexels-photo-4449317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -36,21 +31,16 @@ const BlogPost = async ({ params }) => {
               height={40}
               className={styles.avatar}
             />
-            <span className={styles.username}>Rahul vinod</span>
+            <span className={styles.username}>{data.username}</span>
           </div>
         </div>
 
         <div className={styles.imageContainer}>
-          <Image
-            src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt=""
-            fill={true}
-            className={styles.image}
-          />
+          <Image src={data.img} alt="" fill={true} className={styles.image} />
         </div>
       </div>
       <div className={styles.content}>
-        <p className={styles.text}>{data.body}</p>
+        <p className={styles.text}>{data.content}</p>
       </div>
     </div>
   );

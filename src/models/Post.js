@@ -1,7 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
 
-const { schema } = mongoose;
-
 const postSchema = new Schema(
   {
     title: {
@@ -30,4 +28,4 @@ const postSchema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.model('User', userSchema);
+export default mongoose.models.Post || mongoose.model('Post', postSchema);
