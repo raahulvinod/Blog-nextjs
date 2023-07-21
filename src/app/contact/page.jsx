@@ -4,6 +4,11 @@ import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import Image from 'next/image';
 
+export const metadata = {
+  title: 'Contact Information',
+  description: 'Contact Now',
+};
+
 const Contact = () => {
   return (
     <div className={styles.container}>

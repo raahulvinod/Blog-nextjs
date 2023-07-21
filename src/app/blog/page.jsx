@@ -15,6 +15,7 @@ async function getData() {
   return res.json();
 }
 
+
 const Blog = async () => {
   const data = await getData();
 
