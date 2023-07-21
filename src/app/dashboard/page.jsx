@@ -1,4 +1,5 @@
 'use client';
+import { useSession } from 'next-auth/react';
 // import React, { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import useSWR from 'swr';
@@ -26,6 +27,9 @@ const Dashborard = () => {
   // }, []);
 
   //  Fetch data client-side using a third-party library SWR (stale-while-revalidate)
+
+  const session = useSession();
+  console.log(session);
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
