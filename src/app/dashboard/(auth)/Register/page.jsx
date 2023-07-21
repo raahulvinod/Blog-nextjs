@@ -57,7 +57,7 @@ const Register = () => {
         ></input>
         <button className={styles.button}>Register</button>
       </form>
-      {err & 'Something went wrong!'}
+      {err && 'Something went wrong!'}
       <Link href={'/dashboard/login'}>Login with an existing account</Link>
     </div>
   );
