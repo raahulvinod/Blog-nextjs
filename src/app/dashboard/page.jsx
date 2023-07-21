@@ -1,8 +1,9 @@
 'use client';
 import { useSession } from 'next-auth/react';
-// import React, { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import useSWR from 'swr';
+import { useRouter } from 'next/navigation';
+// import React, { useEffect, useState } from 'react';
 
 const Dashborard = () => {
   // const [data, setData] = useState([]);
@@ -29,7 +30,7 @@ const Dashborard = () => {
   //  Fetch data client-side using a third-party library SWR (stale-while-revalidate)
 
   const session = useSession();
-  console.log(session);
+  const router = useRouter();
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -37,9 +38,18 @@ const Dashborard = () => {
     'https://jsonplaceholder.typicode.com/posts',
     fetcher
   );
-  // console.log(data);
 
-  return <div className={styles.container}></div>;
+  if (session.status === 'loading') {
+    return <p>Loading...</p>;
+  }
+
+  if (session.status === 'unauthenticated') {
+    router?.push('/dashboard/login');
+  }
+
+  if (session.status === 'authenticated') {
+    return <div className={styles.container}>Dashboard</div>;
+  }
 };
 
 export default Dashborard;
